@@ -1,0 +1,41 @@
+Problem:  Given an integer n, find the square root of n. If n is not a perfect square, then return the floor value.
+          Floor value of any number is the greatest Integer which is less than or equal to that number
+soln:
+
+1.Using Binary Search
+
+class Solution {
+    long floorSqrt(long n) {
+        // Your code here
+        if(n==0) return 0;
+        if(n==1) return 1;
+        
+        long left=0,right=n;
+         while(left<=right){
+             long mid=left+(right-left)/2;
+             long pro=mid*mid;
+             if(pro==n){
+                 return mid;
+             }
+             else if(pro>n){
+                 right=mid-1;
+             }
+             else{
+                 left=mid+1;
+             }
+         }
+         return right;
+    }
+}
+Time Complexity: O(log n)
+Space Complexity: O(1)
+
+2.Using In Built functions
+class Solution {
+    long floorSqrt(long n) {
+        // Your code here
+         return (long)(Math.sqrt(n));
+    }
+}
+
+Time and Space Complexity: O(1)
