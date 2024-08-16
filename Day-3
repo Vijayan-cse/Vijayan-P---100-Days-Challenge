@@ -61,3 +61,6 @@ Before sort:
 After Sort:
 1 2 3 5 7 8 9 
 
+
+Time complexity: Best/Average case: n logn ,  worst case:n^2
+space complexity:   Best/Average case: o(log n),  worst case:O(n)
