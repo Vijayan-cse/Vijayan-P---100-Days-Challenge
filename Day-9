@@ -108,6 +108,20 @@ class DoublyLinkedList
             current = current.prev;
         }
     }
+
+    public void searchNode(int nodeValue){
+        if(head != null){
+         DoublyNode temp=head;
+         while(temp != null){
+             if(nodeValue == temp.data){
+                 System.out.println("There is node :"+nodeValue);
+                 return;
+             }
+             temp=temp.next;
+         }
+        }
+           System.out.println("There is no node to search");
+    }
 }
 
 public class DoublyLinkedListInsertion {
@@ -132,12 +146,16 @@ public class DoublyLinkedListInsertion {
 
         // Print the doubly linked list
         list.printList();
+        list.printFromLast();
+        list.searchNode(3);
     }
 }
 
 
 output:
-2 1 5 3 4 
+2 -> 1 -> 5 -> 3 -> 4 
+4 -> 6 -> 3 -> 1 -> 2 
+There is node :3
 
 
 
