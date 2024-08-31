@@ -163,5 +163,175 @@ There is node :3
 
 
 2. ///////////////////////////////////////////////////////////////////////       Deletion  /////////////////////////////////////////////////////////////////////////////////////////////
+public class DoublyLinkedListDemo {
 
+    // Node class for doubly linked list
+    static class DoublyNode {
+        int data;
+        DoublyNode next;
+        DoublyNode prev;
+
+        public DoublyNode(int data) {
+            this.data = data;
+            this.next = null;
+            this.prev = null;
+        }
+    }
+
+    // DoublyLinkedList class with various methods
+    static class DoublyLinkedList {
+        private DoublyNode head;
+        private DoublyNode tail;
+        private int size;
+
+        public DoublyLinkedList() {
+            this.head = null;
+            this.tail = null;
+            this.size = 0;
+        }
+
+        // Insert a node at the end of the list
+        public void insertEnd(int data) {
+            DoublyNode newNode = new DoublyNode(data);
+            if (head == null) {
+                head = newNode;
+                tail = newNode;
+            } else {
+                tail.next = newNode;
+                newNode.prev = tail;
+                tail = newNode;
+            }
+            size++;
+        }
+
+        // Delete the node at the front of the list
+        public void deleteFront() {
+            if (head == null) {
+                System.out.println("List is empty.");
+                return;
+            }
+
+            if (head == tail) { // Only one node in the list
+                head = null;
+                tail = null;
+            } else {
+                head = head.next;
+                head.prev = null;
+            }
+            size--;
+        }
+
+        // Delete the node at the middle of the list
+        public void deleteMiddle(int data) {
+            if (head == null) {
+                System.out.println("List is empty.");
+                return;
+            }
+
+            if (size == 1) {
+                deleteFront(); // Only one node, handle as front
+                return;
+            }
+
+            
+            DoublyNode current = head;
+            for (int i = 0; i < data;i++) {
+                current = current.next;
+            }
+
+            if (current == head) { // Special case for the first node
+                deleteFront();
+                return;
+            }
+
+            if (current == tail) { // Special case for the last node
+                deleteBack();
+                return;
+            }
+
+            // Node is somewhere in the middle
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
+            size--;
+        }
+
+        // Delete the node at the back of the list
+        public void deleteBack() {
+            if (tail == null) {
+                System.out.println("List is empty.");
+                return;
+            }
+
+            if (head == tail) { // Only one node in the list
+                head = null;
+                tail = null;
+            } else {
+                tail = tail.prev;
+                tail.next = null;
+            }
+            size--;
+        }
+
+        // Print the list from head to tail
+        public void printForward() {
+            DoublyNode current = head;
+            while (current != null) {
+                System.out.print(current.data + " ");
+                current = current.next;
+            }
+            System.out.println();
+        }
+
+        // Print the list from tail to head
+        public void printBackward() {
+            DoublyNode current = tail;
+            while (current != null) {
+                System.out.print(current.data + " ");
+                current = current.prev;
+            }
+            System.out.println();
+        }
+    }
+
+    // Main class to test the DoublyLinkedList functionality
+    public static void main(String[] args) {
+        DoublyLinkedList dll = new DoublyLinkedList();
+
+        // Insert nodes
+        dll.insertEnd(10);
+        dll.insertEnd(20);
+        dll.insertEnd(30);
+        dll.insertEnd(40);
+        dll.insertEnd(50);
+
+        // Print list
+        System.out.println("Initial List:");
+        dll.printForward();  // Output: 10 20 30 40 50
+
+        // Delete at front
+        dll.deleteFront();
+        System.out.println("After deleting front:");
+        dll.printForward();  // Output: 20 30 40 50
+
+        // Delete at middle
+        dll.deleteMiddle(1);
+        System.out.println("After deleting middle:");
+        dll.printForward();  // Output: 20 30 50
+
+        // Delete at back
+        dll.deleteBack();
+        System.out.println("After deleting back:");
+        dll.printForward();  // Output: 20 30
+    }
+}
+
+output:
+Initial List:
+10 20 30 40 50 
+After deleting front:
+20 30 40 50 
+After deleting middle:
+20 40 50 
+After deleting back:
+20 40 
 
