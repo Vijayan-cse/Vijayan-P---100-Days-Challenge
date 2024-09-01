@@ -1,4 +1,5 @@
-1.class Solution {
+1.reverse the vowels in string
+class Solution {
     public boolean isSubsequence(String s, String t) {
         int s1=0;
         int t1=0;
@@ -14,4 +15,24 @@
 }
 
 
-2.
+2.find maximum average subarray- sliding window
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        int sum=0;
+        for(int i=0;i<k;i++){
+            sum += nums[i];
+        }
+      int maxSum=sum;
+
+      for(int i=k;i<nums.length;i++){
+        sum += nums[i];
+        sum -= nums[i-k];
+       if(sum >= maxSum){
+            maxSum=sum;
+        }
+      }
+           return (double) maxSum / k;
+    }
+}
+
+
