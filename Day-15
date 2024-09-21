@@ -1,0 +1,45 @@
+1.You are given a read only array of n integers from 1 to n.
+
+Each integer appears exactly once except A which appears twice and B which is missing.
+
+Return A and B.
+
+Input:[3 1 2 5 3] 
+
+Output:[3, 4] 
+
+A = 3, B = 4
+
+
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] repeatedNumber(final int[] A) {
+        Arrays.sort(A);
+        int[] res = new int[2];
+        
+        int count = 1;
+        
+        for(int i=0;i<A.length;i++){
+            if(i < A.length-1 && A[i] == A[i+1]){
+                res[0] = A[i];
+            }
+            if(A[i] <= 0 || A[i] < count){
+                continue;
+            }
+            else{
+                if(A[i] == count){
+                count++;
+                }
+                else{
+                    res[1] = count;
+                }
+            }
+        }
+        
+        if(res[1] == 0){
+            res[1] = count;
+        }
+        
+        return res;
+    }
+}
