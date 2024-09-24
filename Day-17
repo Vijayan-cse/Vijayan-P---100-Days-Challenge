@@ -1,0 +1,75 @@
+1.Roman to Integer
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+
+Input: s = "MCMXCIV"
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+ 
+
+class Solution {
+    public int romanToInt(String s) {
+        int ans = 0;
+        int num = 0;
+        int prev = 0;
+        for(int i=s.length()-1;i>=0;i--){
+           switch(s.charAt(i)){
+            case 'I': num = 1; break;
+            case 'V': num = 5; break;
+            case 'X': num = 10; break;
+            case 'L': num = 50; break;
+            case 'C': num = 100; break;
+            case 'D': num = 500; break;
+            case 'M': num = 1000; break;
+           }
+
+           if(num < prev)   ans -= num;
+           else   ans += num; 
+           
+           prev = num;
+        }
+        return ans;
+    }
+}
+
+
+or
+
+
+
+class Solution {
+    public int romanToInt(String s) {
+        Map<Character,Integer> map = new HashMap<>();
+        map.put('I',1);
+        map.put('V',5);
+        map.put('X',10);
+        map.put('L',50);
+        map.put('C',100);
+        map.put('D',500);
+        map.put('M',1000);
+
+        int i = 0;
+        int j = 1;
+        int res = 0;
+        while(i < s.length() && j < s.length()){
+            if(map.get(s.charAt(i)) >= map.get(s.charAt(j))){
+               res += map.get(s.charAt(i)); 
+            }
+            else{
+                res -= map.get(s.charAt(i));
+            }
+            i++;
+            j++;
+        }
+         // last one missing add to the result
+        res += map.get(s.charAt(i));
+
+        return res;
+    }
+}
