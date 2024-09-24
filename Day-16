@@ -1,0 +1,54 @@
+1.Find longest palindrome string
+approach: apply approach for both even length palindrome and odd length palindrome separately. for i th element move pointers toward left,right for finding length
+Input: s = "babad"
+Output: "bab"
+Explanation: "aba" is also a valid answer.
+
+class Solution {
+    public String longestPalindrome(String s) {
+        int length = s.length();
+         if(length <= 1)
+         return s;
+
+        String result = "";
+
+        for(int i=1;i<length;i++){
+            //odd 
+            int low = i;
+            int high = i;
+            //while loop for finding substring length
+            while(s.charAt(low) == s.charAt(high)){
+                low--;
+                high++;
+
+                if(low == -1 || high == length){
+                    break;
+                }
+            }
+
+            String palindrome = s.substring(low+1,high);
+            if(palindrome.length() > result.length()){
+                result = palindrome;
+            }
+
+
+            //even
+             low = i-1;
+             high = i;
+            // while loop for finding substring
+            while(s.charAt(low) == s.charAt(high)){
+                low--;
+                high++;
+
+                if(low == -1 || high == length){
+                    break;
+                }
+            }
+              palindrome = s.substring(low+1,high);
+            if( palindrome.length() > result.length()){
+                result = palindrome;
+            }
+        }
+        return result;
+    }
+}
