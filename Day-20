@@ -1,0 +1,53 @@
+Return occurence of first non repeating character.
+Approach-1
+public class Main
+{
+	public static void main(String[] args) {//find first non repeat character
+	String s = "AABECDBCFE";
+	
+	for(int i=0 ; i<s.length() ; i++){
+	    boolean unique = true;
+	     for(int j=0 ; j<s.length(); j++){
+	       if(i != j && s.charAt(i) == s.charAt(j)){
+	         unique = false;
+	         break;
+ 	       }
+ 	     }
+ 	     
+ 	     if(unique){
+ 	     System.out.println(s.charAt(i));
+ 	     break;
+ 	     }
+ 	 }
+   }
+ }  o/p: D
+
+
+
+Approach - 2
+
+import java.util.*;
+class Main{
+  public static void main(String[] args){ //using hashmap entryset
+     String s = "AADB";
+     Map<Character,Integer> map = new LinkedHashMap<>();
+     for(int i=0;i<s.length();i++){
+     char ch = s.charAt(i);
+        if(map.containsKey(ch)){
+         map.put(ch,map.getOrDefault(ch,0)+1);
+         }
+         else{
+         map.put(ch,1);
+         }
+     }
+         System.out.println(map);
+        
+        for(Map.Entry<Character,Integer> es : map.entrySet()){
+          if(es.getValue() == 1){
+          System.out.println(es.getKey());
+          break;
+           }
+        }
+    }
+}
+here while used hashmap for input:AADB the actual output is D, but it prints B for resolving this problem we apply LinkedHashmap.
