@@ -1,0 +1,27 @@
+program for replace occurence specific character with its number of occurence
+
+public class Main
+{
+	public static void main(String[] args) {
+		String s = "opentext tt";
+		char[] arr = s.toCharArray();
+		char temp = 't';
+		int count = 1;
+		
+		if(s.indexOf(temp) == -1){
+		        System.out.println("Not exist");
+		        System.exit(0); // for exit from execution
+		    }
+		    
+		for(int i=0;i<arr.length;i++){
+		    
+		    if(arr[i] == temp){
+		        arr[i] = String.valueOf(count).charAt(0);
+		        count++;
+		    }
+		}
+		System.out.println(arr);
+	}
+}
+
+o/p: open1ex2 34
