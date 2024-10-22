@@ -25,3 +25,31 @@ public class Main
 }
 
 o/p: open1ex2 34
+
+
+Approach-2 ////////Using StringBuilder
+
+public class Main
+{
+	public static void main(String[] args) {
+	String s = "opentext";
+	char temp = 't';
+	
+	if(s.indexOf(temp) == -1){
+	    System.out.println("Not occurence");
+	    System.exit(0);
+	}
+	
+	int count = 1;
+	
+	StringBuilder sb = new StringBuilder(s);
+	for(int i=0;i<s.length();i++){
+	    char ch = sb.charAt(i);
+	    if(ch == temp){
+	        sb.replace(i,i+1,String.valueOf(count)); /////i,i+1 these are ranges in sb, sb.replace(start,end,count)- then only letter replace
+	        count++;
+	    }
+	}
+	System.out.println(sb.toString());
+	}
+}
