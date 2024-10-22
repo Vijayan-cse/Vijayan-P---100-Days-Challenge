@@ -1,0 +1,25 @@
+1.remove whitespaces
+Note: trim() used to remove whitespaces in the starting and ending positions
+class HelloWorld {
+    public static void main(String[] args) {
+      String s= "   h e ll o  wo rl d ";
+      String res = s.replaceAll("\\s",""); //s is whitespace
+      System.out.println(res);
+    }
+}
+
+o/p: helloworld
+
+2.remove whitespaces and special characters
+class HelloWorld {
+    public static void main(String[] args) {
+      String s= " # v* i% j( ^a$ @y";
+      String res = s.replaceAll("\\s",""); //remove whitespaces
+      System.out.println(res);
+    res = s.replaceAll("[^a-zA-Z0-9]","");//only leeters numbers print
+      System.out.println(res);
+    }
+}
+
+o/p:  #v*i%j(^a$@y
+      vijay
