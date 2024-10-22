@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        longestLength("abbac");
+    }
+
+    public static void longestLength(String str) {
+        String longString = null;
+        int length = 0;
+        Map<Character, Integer> map = new LinkedHashMap<>();
+
+        char[] arr = str.toCharArray();
+
+        for (int i = 0; i < arr.length; i++) {
+            char ch = arr[i];
+            if (!map.containsKey(ch)) {
+                map.put(ch, i);
+            } else {
+                // Move the i to the index of the repeated character + 1
+                i = map.get(ch);
+                map.clear(); // Clear the map after finding the duplicate
+            }
+
+            // Track the longest unique substring
+            if (map.size() > length) {
+                length = map.size();
+                longString = map.keySet().toString();
+            }
+        }
+        System.out.println("Longest length: " + length);
+        System.out.println("Longest substring with unique characters: " + longString);
+    }
+}
+
+ o/p:     Longest length: 3
+Longest substring with unique characters: [b, a, c]
